@@ -1,0 +1,23 @@
+.FoodItem {
+    text-align: center;
+    background-color: #d07070;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    width: 70%;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.FoodItem>.Right{
+    flex: 1;
+ }
+.FoodItem>.Left{
+    flex: 1;
+}
+.FoodItem>.Center{
+    flex: 3;
+    font-size: 50%;
+}
