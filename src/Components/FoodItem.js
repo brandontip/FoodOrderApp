@@ -5,8 +5,10 @@ function FoodItem(props){
     const [quantity, setQuantity] = useState(0);
 
     const QuantityUpdateHandler = (event) => {
+        event.preventDefault();
         if(event.target.value < 0){return;}
-        setQuantity(prev=>event.target.value);
+        setQuantity(event.target.value);
+        props.onCartUpdate(props.name, event.target.value);
     }
 
     return(
