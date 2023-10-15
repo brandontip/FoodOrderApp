@@ -15,8 +15,8 @@ function FoodItem(props){
         <div className="FoodItem">
             <h3 className='Left'>{props.name}</h3>
             <p className='Center'>{props.description}</p>
-            <p className="Right">{props.price}</p>
-            <input value={quantity} type='number' onChange={QuantityUpdateHandler}></input>
+            <p className="Right">${props.price}</p>
+            <input value={quantity} type='number' onChange={QuantityUpdateHandler} className='foodInputField'></input>
         </div>
     )
 }

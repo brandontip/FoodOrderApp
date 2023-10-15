@@ -1,6 +1,6 @@
 .FoodItem {
     text-align: center;
-    background-color: #dac6c6;
+    background-color: #f1efef;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -8,16 +8,40 @@
     font-size: calc(10px + 2vmin);
     width: 70%;
     margin: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 1px solid #000000;
 }
 
 .FoodItem>.Right{
     flex: 1;
+    font-size: 80%;
  }
 .FoodItem>.Left{
     flex: 1;
 }
 .FoodItem>.Center{
-    flex: 3;
-    font-size: 50%;
+    flex: 1;
+    font-size: 40%;
+}
+
+.foodInputField{
+    flex: .5;
+    width: 50px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    text-align: center;
+    font-size: 60%;
+    margin-right: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
 }

@@ -2,6 +2,7 @@ import './App.css';
 import Header from "./Components/Header";
 import Menu from "./Components/Menu";
 import {useState} from "react";
+import CheckoutModal from "./Components/Modal/CheckoutModal";
 
 const mockFoodData = [
     {name: "Pizza", price: 10.99, description: "Savor the extraordinary flavors of our mouthwatering pizza! Crafted with a medley of premium ingredients and baked to perfection, it's the epitome of cheesy, savory delight."},
@@ -13,17 +14,25 @@ const mockFoodData = [
 
 
 function App() {
+    const [checkingOut, setCheckingOut] = useState(false);
+    const CheckoutHandler = () => {setCheckingOut(true)}
+
     const CartUpdateHandler = (item, quantity) => {UpdateCartContents(prev=>{return {...prev, [item]: quantity}})}
+
+    const ExitCartHandler = () => {setCheckingOut(false)}
 
     const [shoppingCartContents, UpdateCartContents]= useState({Pizza: 0, Burger: 0, Fries: 0, Soda: 0});
     const CalculateTotal = (cartContents, foodData) => {
-        return cartContents.Pizza * foodData[0].price + cartContents.Burger * foodData[1].price + cartContents.Fries * foodData[2].price + cartContents.Soda * foodData[3].price;
+        let num= cartContents.Pizza * foodData[0].price + cartContents.Burger * foodData[1].price + cartContents.Fries * foodData[2].price + cartContents.Soda * foodData[3].price;
+        return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     }
 
     return (
     <>
-    <Header shoppingCartTotal={CalculateTotal(shoppingCartContents,mockFoodData)}></Header>
+    <Header shoppingCartTotal={CalculateTotal(shoppingCartContents,mockFoodData)} checkoutHandler={CheckoutHandler}></Header>
     <Menu food={mockFoodData} onCartUpdate={CartUpdateHandler}></Menu>
+        {checkingOut &&    <CheckoutModal cartContents={shoppingCartContents}  exitCartHandler={ExitCartHandler} total={CalculateTotal(shoppingCartContents,mockFoodData)}> </CheckoutModal>}
+        <div>{checkingOut.toString()}</div>
     </>
   );
 }

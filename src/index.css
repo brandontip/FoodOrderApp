@@ -5,9 +5,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: lighter;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  font-weight: lighter;
 }
+
+h1{font-weight: lighter;}
+h2{font-weight: lighter;}
+h3{font-weight: lighter;}
