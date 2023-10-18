@@ -19,3 +19,11 @@ Body {
     width: 100%;
     border-bottom: 1px solid #aaa;
 }
+
+.MenuItems{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-items: center;
+    column-gap: 0px;
+    width: 90%;
+}

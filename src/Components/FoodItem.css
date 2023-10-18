@@ -12,14 +12,29 @@
     border: 1px solid #000000;
 }
 
-.FoodItem>.Right{
+.foodSummary{
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    width: 70%;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #e10b0b;
+}
+
+.foodSummary>.Name{
     flex: 1;
     font-size: 80%;
  }
-.FoodItem>.Left{
+.foodSummary>.Description{
     flex: 1;
+    font-size: 40%;
+
 }
-.FoodItem>.Center{
+.foodSummary>.Price{
     flex: 1;
     font-size: 40%;
 }

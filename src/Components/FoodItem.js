@@ -1,23 +1,47 @@
 import "./FoodItem.css"
-import {useState} from "react";
+import {useRef} from "react";
+import { useContext } from 'react';
+import CartContext from '../store/cart-context';
 
 function FoodItem(props){
-    const [quantity, setQuantity] = useState(0);
+    const cartCtx = useContext(CartContext);
+    const amountInputRef = useRef();
 
-    const QuantityUpdateHandler = (event) => {
+    const addToCartHandler = amount => {
+        cartCtx['addItem']({
+            id: props.id+Date.now(),
+            name: props.name,
+            amount: amount,
+            price: props.price
+        });
+    };
+
+    const submitHandler = (event) => {
         event.preventDefault();
-        if(event.target.value < 0){return;}
-        setQuantity(event.target.value);
-        props.onCartUpdate(props.name, event.target.value);
-    }
+        const enteredAmount = +amountInputRef.current.value;
+        addToCartHandler(enteredAmount);
+        amountInputRef.current.value = '';
+    };
 
     return(
-        <div className="FoodItem">
-            <h3 className='Left'>{props.name}</h3>
-            <p className='Center'>{props.description}</p>
-            <p className="Right">${props.price}</p>
-            <input value={quantity} type='number' onChange={QuantityUpdateHandler} className='foodInputField'></input>
-        </div>
+        <form className="FoodItem" onSubmit={submitHandler}>
+            <div className='foodSummary'>
+                <h3 className='Name'>{props.name}</h3>
+                <p className='Description'>{props.description}</p>
+                <p className="Price">${props.price}</p>
+            </div>
+            <input  ref={amountInputRef}
+                    label='Amount'
+                    input={{
+                        id: 'amount_' + props.id,
+                        type: 'number',
+                        min: '1',
+                        max: '5',
+                        step: '1',
+                        defaultValue: '1',
+                    } }
+                    className='foodInputField'></input>
+        </form>
     )
 }
 

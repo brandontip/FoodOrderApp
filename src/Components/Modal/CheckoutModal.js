@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import ReactDOM from 'react-dom';
 import './CheckoutModal.css';
+import CartContext from "../../store/cart-context";
 
 
 const Backdrop = (props) => {
@@ -8,16 +9,26 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
+    const cartCtx = useContext(CartContext);
+    const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`
+    let numberOfItems = 0;
+    for (let i = 0; i < cartCtx.items.length; i++) {
+        numberOfItems += cartCtx.items[i]['amount'];
+    }
+
     return (
         <div className='CheckoutModal' >
             <header >
                 <h2>Your cart</h2>
             </header>
-            <div>Pizza: {props.cartContents['Pizza']}</div>
-            <div>Burgers: {props.cartContents['Burger']}</div>
-            <div>Fries: {props.cartContents['Fries']}</div>
-            <div>Soda: {props.cartContents['Soda']}</div>
-            <div>Total price: {props.total}</div>
+
+            {cartCtx.items.map((item) => <div>
+            <span>{item['name']}</span>
+            <span>Quantity</span>
+            <span>{item['amount']}</span>
+                    </div>)}
+            <div>Total number of items: {numberOfItems}</div>
+            <div>Total price: {totalAmount}</div>
             <footer >
                 <div onClick={props.onConfirm} className='checkoutfooter'>Submit order</div>
             </footer>
@@ -35,12 +46,7 @@ const CheckoutModal = (props) => {
                 document.getElementById('backdrop-root')
             )}
             {ReactDOM.createPortal(
-                <ModalOverlay
-                    cartContents = {props.cartContents}
-                    total = {props.total}
-                    // message={props.message}
-                    // onConfirm={props.onConfirm}
-                />,
+                <ModalOverlay />,
                 document.getElementById('overlay-root')
             )}
         </React.Fragment>

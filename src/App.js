@@ -3,6 +3,7 @@ import Header from "./Components/Header";
 import Menu from "./Components/Menu";
 import {useState} from "react";
 import CheckoutModal from "./Components/Modal/CheckoutModal";
+import CartProvider from './store/CartProvider';
 
 const mockFoodData = [
     {name: "Pizza", price: 10.99, description: "Savor the extraordinary flavors of our mouthwatering pizza! Crafted with a medley of premium ingredients and baked to perfection, it's the epitome of cheesy, savory delight."},
@@ -28,12 +29,12 @@ function App() {
     }
 
     return (
-    <>
+    <CartProvider>
     <Header shoppingCartTotal={CalculateTotal(shoppingCartContents,mockFoodData)} checkoutHandler={CheckoutHandler}></Header>
-    <Menu food={mockFoodData} onCartUpdate={CartUpdateHandler}></Menu>
-        {checkingOut &&    <CheckoutModal cartContents={shoppingCartContents}  exitCartHandler={ExitCartHandler} total={CalculateTotal(shoppingCartContents,mockFoodData)}> </CheckoutModal>}
+    <Menu food={mockFoodData} ></Menu>
+        {checkingOut &&    <CheckoutModal exitCartHandler={ExitCartHandler}> </CheckoutModal>}
         <div>{checkingOut.toString()}</div>
-    </>
+    </CartProvider>
   );
 }
 
