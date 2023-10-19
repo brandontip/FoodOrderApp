@@ -4,6 +4,8 @@ import Menu from "./Components/Menu";
 import {useState} from "react";
 import CheckoutModal from "./Components/Modal/CheckoutModal";
 import CartProvider from './store/CartProvider';
+import shoppingcartbutton from "./Images/shoppingcartbutton.png";
+
 
 const mockFoodData = [
     {name: "Pizza", price: 10.99, description: "Savor the extraordinary flavors of our mouthwatering pizza! Crafted with a medley of premium ingredients and baked to perfection, it's the epitome of cheesy, savory delight."},
