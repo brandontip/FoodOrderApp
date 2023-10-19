@@ -10,7 +10,7 @@ function Header(props){
 
     return( <header className="Header">
         <p className='Left'>
-           Food Order App
+           Brandash
         </p>
         <div className='Right'> Checkout {totalAmount}
         <img src={shoppingcartbutton} className={"shoppingImage"} alt={'a shopping cart'} onClick={props.checkoutHandler}/>

@@ -12,6 +12,7 @@ function FoodItem(props){
     const amountInputRef = useRef();
 
     const addToCartHandler = amount => {
+        if(amount === 0){return;}
         cartCtx['addItem']({
             id: props.id+Date.now(),
             name: props.name,
@@ -42,15 +43,15 @@ function FoodItem(props){
     return(
         <form className="FoodItem" onSubmit={submitHandler}>
             <div className='foodSummary'>
-                <h3 className='Name'>{props.name}</h3>
+                <p className='Name'>{props.name}</p>
                 <p className='Description'>{props.description}</p>
                 <p className="Price">${props.price}</p>
             </div>
             <img src={image} className='menuImage' alt={'a shopping cart'} onClick={props.checkoutHandler}/>
             <div className='foodInputStack'>
-            <label >Amount</label>
+            <label >Quantity</label>
             <input  ref={amountInputRef}
-                    label='Amount'
+                    label='Quantity'
                     input={{
                         id: 'amount_' + props.id,
                         type: 'number',

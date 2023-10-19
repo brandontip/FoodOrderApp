@@ -21,13 +21,14 @@ const ModalOverlay = (props) => {
             <header >
                 <h2>Your cart</h2>
             </header>
-
-            {cartCtx.items.map((item) => <div>
-            <span>{item['name']}</span>
-            <span>Quantity</span>
-            <span>{item['amount']}</span>
-                    </div>)}
-            <div>Total number of items: {numberOfItems}</div>
+            <div className='itemsInCart'>
+            {cartCtx.items.map((item) => <>
+            <span>{item['name']} </span>
+                <span>{item['price']} </span>
+            <span> Count: {item['amount']} </span>
+                    </>)}
+                </div>
+            <div>Total item count: {numberOfItems}</div>
             <div>Total price: {totalAmount}</div>
             <footer >
                 <div onClick={props.onConfirm} className='checkoutfooter'>Submit order</div>
